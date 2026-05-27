@@ -17,6 +17,5 @@ RUN useradd --system --no-create-home deploy_server
 USER deploy_server
 
 EXPOSE 25381
-RUN python3 generate_token.py
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "25381"]
