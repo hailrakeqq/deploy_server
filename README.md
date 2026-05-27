@@ -7,5 +7,5 @@ for example:
 ## Install:
 ```
 docker build -t deploy_server .
-docker run -d --name deploy_server -p 25381:25381 --env-file .env deploy_server:latest
+docker run -d --name deploy_server -v /var/run/docker.sock:/var/run/docker.sock -p 25381:25381 --env-file .env deploy_server:latest
 ```

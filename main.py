@@ -20,6 +20,7 @@ app.add_middleware(
 )
 
 def verify_token(authorization: str = Header(None)):
+    print(f'Auth: {authorization}')
     if not authorization:
         raise HTTPException(401, "Missing auth header")
     if not authorization.startswith("Bearer "):
@@ -31,10 +32,6 @@ def verify_token(authorization: str = Header(None)):
 
 
 @app.get("/")
-def root(auth=Depends(verify_token)):
-    return {"message": "Hello from FastAPI"}
-
-@app.get("/deploy")
 def deploy(image_name: str, image_tag: str, auth=Depends(verify_token)):
 
     full_image = f'{image_name}:{image_tag}'
